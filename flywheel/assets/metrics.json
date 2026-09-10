@@ -1,0 +1,65 @@
+[
+  {
+    "id": "m_hr",
+    "name": "HR 口径",
+    "definition": "HR=风险比 exp(coef)：<1 提示风险降低；95%CI 不跨 1 即显著（p<0.05）",
+    "query_tags": [
+      "cox"
+    ],
+    "tier": "base"
+  },
+  {
+    "id": "m_cindex",
+    "name": "C-index 口径",
+    "definition": "Concordance（C-index）：0.5=随机、>0.7 良好，衡量模型判别能力",
+    "query_tags": [
+      "cox",
+      "rsf"
+    ],
+    "tier": "base"
+  },
+  {
+    "id": "m_time",
+    "name": "m_time",
+    "factor": "m_time",
+    "definition": "GBSG2 的生存时间列名是 time 而非 rfstime；cens=1 表示复发（299 事件），不要用错列名和事件方向",
+    "detail": "GBSG2 的生存时间列名是 time 而非 rfstime；cens=1 表示复发（299 事件），不要用错列名和事件方向",
+    "lesson": "GBSG2 的生存时间列名是 time 而非 rfstime；cens=1 表示复发（299 事件），不要用错列名和事件方向",
+    "query_tags": [
+      "口径"
+    ],
+    "tier": "learned",
+    "source_feedback": "fb_s01",
+    "note": "由反馈 fb_s01（业务方）沉淀"
+  },
+  {
+    "id": "m_oob",
+    "name": "m_oob",
+    "factor": "m_oob",
+    "definition": "OOB C-index 与训练集 Concordance 口径不同：OOB 接近泛化性能，训练集含乐观偏倚，不能直接对比",
+    "detail": "OOB C-index 与训练集 Concordance 口径不同：OOB 接近泛化性能，训练集含乐观偏倚，不能直接对比",
+    "lesson": "OOB C-index 与训练集 Concordance 口径不同：OOB 接近泛化性能，训练集含乐观偏倚，不能直接对比",
+    "query_tags": [
+      "rsf",
+      "oob"
+    ],
+    "tier": "learned",
+    "source_feedback": "fb_s02",
+    "note": "由反馈 fb_s02（统计评审）沉淀"
+  },
+  {
+    "id": "m_estrec",
+    "name": "m_estrec",
+    "factor": "m_estrec",
+    "definition": "estrec 调整后不显著（p=0.661）是因为与 progrec 高度相关（Spearman ρ=0.60），信号被共线分走，不是真的没作用",
+    "detail": "estrec 调整后不显著（p=0.661）是因为与 progrec 高度相关（Spearman ρ=0.60），信号被共线分走，不是真的没作用",
+    "lesson": "estrec 调整后不显著（p=0.661）是因为与 progrec 高度相关（Spearman ρ=0.60），信号被共线分走，不是真的没作用",
+    "query_tags": [
+      "estrec",
+      "cox"
+    ],
+    "tier": "learned",
+    "source_feedback": "fb_s03",
+    "note": "由反馈 fb_s03（统计评审）沉淀"
+  }
+]

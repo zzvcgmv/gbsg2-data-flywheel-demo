@@ -1,0 +1,22 @@
+{
+  "question_id": "q01",
+  "question": "调整年龄、肿瘤大小、淋巴结、受体浓度、绝经状态与分级后，激素治疗对无复发生存的影响？",
+  "analysis_target": "cox",
+  "golden_answer": {
+    "method": "多变量 Cox PH，horTh 调整 age/tsize/pnodes/estrec/progrec/menostat/tgrade",
+    "hr": 0.707,
+    "ci95": [0.549, 0.911],
+    "p": 0.0073,
+    "ph_test": "主暴露 horTh PH 成立（cox.zph p=0.625，残差图趋势平稳）；GLOBAL 违反（p=0.0037，由 age/estrec/progrec/menostat/tgrade 引起）",
+    "conclusion": "调整后激素治疗显著降低无复发生存风险约 29%（HR=0.707）",
+    "key_points": [
+      "HR=0.707，95%CI 0.549–0.911 不跨 1，p=0.0073，治疗获益明确",
+      "主暴露 PH 假设成立（p=0.625），HR 可作为平均效应解读",
+      "模型整体显著：LR/Wald/Score 均 p<2e-16，Concordance=0.692",
+      "独立预后因素：horTh / tsize / pnodes / progrec / tgrade.L",
+      "estrec 调整后不显著（p=0.661），非独立预后因素（与 progrec 共线）",
+      "稳健性：单变量 0.695 / 主模型 0.707 / 分层 0.699，三模型 HR≈0.70 且 CI 重叠，结论不依赖模型设定",
+      "局限：GBSG2 为 686 例历史试验数据，结论外推需谨慎（AI 应主动声明数据局限）"
+    ]
+  }
+}

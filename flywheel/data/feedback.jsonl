@@ -1,0 +1,10 @@
+{"id": "fb_s01", "source_role": "业务方", "feedback_type": "口径修正", "comment": "GBSG2 的生存时间列名是 time 而非 rfstime；cens=1 表示复发（299 事件），不要用错列名和事件方向", "asset_id": "m_time", "tags": ["口径"]}
+{"id": "fb_s02", "source_role": "统计评审", "feedback_type": "口径修正", "comment": "OOB C-index 与训练集 Concordance 口径不同：OOB 接近泛化性能，训练集含乐观偏倚，不能直接对比", "asset_id": "m_oob", "tags": ["rsf", "oob"]}
+{"id": "fb_s03", "source_role": "统计评审", "feedback_type": "口径修正", "comment": "estrec 调整后不显著（p=0.661）是因为与 progrec 高度相关（Spearman ρ=0.60），信号被共线分走，不是真的没作用", "asset_id": "m_estrec", "tags": ["estrec", "cox"]}
+{"id": "fb_s04", "source_role": "业务方", "feedback_type": "知识补充", "comment": "稳健性检查要做三模型对照：单变量 0.695 / 主模型 0.707 / 分层 Cox（strata menostat+tgrade）0.699，三模型 HR≈0.70 且 CI 重叠，结论不依赖模型设定", "asset_id": "k_robust", "tags": ["cox", "稳健"]}
+{"id": "fb_s05", "source_role": "统计评审", "feedback_type": "知识补充", "comment": "tgrade 三水平因子与二次多项式张成同一模型空间（AIC 3489.464 必然相同）；线性编码 AIC=3490.349（ΔAIC≈0.89）、LRT p=0.089，非线性证据不足；调整后 tgrade.Q p=0.099 边际不显著", "asset_id": "k_tgrade", "tags": ["tgrade", "编码"]}
+{"id": "fb_s06", "source_role": "统计评审", "feedback_type": "知识补充", "comment": "PH 违反处理：对违反变量分层 strata() 重估主效应做敏感性分析，分层后 horTh HR=0.699（0.542–0.901）；违反集中在 age/estrec/progrec/menostat/tgrade；分层模型与主模型结构不同，Concordance 不可直接比较", "asset_id": "k_ph_strata", "tags": ["ph", "分层"]}
+{"id": "fb_s07", "source_role": "业务方", "feedback_type": "知识补充", "comment": "显著性≠预测重要性：horTh 在 Cox 中显著（p=0.007）但 VIMP 仅 0.004；age 在 RSF 中 VIMP 第 3 但 Cox 不显著（p=0.309），提示潜在非线性年龄效应，两类指标回答不同问题", "asset_id": "k_sig_vimp", "tags": ["rsf", "vimp"]}
+{"id": "fb_s08", "source_role": "工程", "feedback_type": "案例沉淀", "comment": "环境坑：R 4.2.0 装不上 randomForestSRC（CRAN 无二进制、缺 Fortran 编译链），改用 ranger（OOB C-index = 1 - prediction.error）", "asset_id": "f_rsf_ver", "tags": ["rsf"]}
+{"id": "fb_s09", "source_role": "工程", "feedback_type": "案例沉淀", "comment": "环境坑：ggsurvplot 报 xfun::isFALSE 弃用错误（markdown 1.3 过旧）；探索期用 base plot + survdiff 即可", "asset_id": "f_markdown", "tags": ["生存"]}
+{"id": "fb_s10", "source_role": "统计评审", "feedback_type": "知识补充", "comment": "AI 回答必须主动声明数据局限：GBSG2 为 686 例历史试验数据（299 事件），结论外推需谨慎", "asset_id": "k_limit", "tags": ["cox", "生存"]}

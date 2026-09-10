@@ -1,0 +1,15 @@
+{
+  "question_id": "q04",
+  "question": "主模型 GLOBAL PH 假设违反（p=0.0037），结论还成立吗？如何处理？",
+  "analysis_target": "cox_stratified",
+  "golden_answer": {
+    "method": "cox.zph 诊断 → 对违反变量分层 strata(menostat, tgrade) → 重估主效应",
+    "key_points": [
+      "cox.zph：GLOBAL p=0.0037 违反；主暴露 horTh p=0.625 成立（残差图平稳）",
+      "违反集中在协变量：age(0.0012) / estrec(0.0152) / progrec(0.0362) / menostat(0.0201) / tgrade(0.0047)",
+      "分层 Cox 后 horTh HR=0.699（0.542–0.901，p=0.0058），与主模型 0.707 一致",
+      "结论：PH 违反不改变主结论；主暴露 HR 可作平均效应解读，报告中注明协变量 PH 问题",
+      "注意：分层模型与主模型结构不同（strata 吸收两变量），Concordance 不可直接比较"
+    ]
+  }
+}

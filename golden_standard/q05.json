@@ -1,0 +1,16 @@
+{
+  "question_id": "q05",
+  "question": "随机生存森林的预测性能能否超越 Cox？两方法的变量信号是否一致？",
+  "analysis_target": "rsf_vs_cox",
+  "golden_answer": {
+    "method": "ranger 随机生存森林（500 棵树，seed=42）OOB 评估，与 Cox 对比；VIMP 与 Cox 显著性对照",
+    "key_points": [
+      "RSF OOB C-index = 0.679，Cox 训练集 Concordance = 0.692：同水平（0.68–0.69），RSF 未超越经典 Cox",
+      "口径说明：OOB 接近泛化性能，训练集一致性存在乐观偏倚；严格对比需同口径评估（测试集/交叉验证）",
+      "VIMP 排序：pnodes(0.041) >> progrec(0.023) > age(0.014) > estrec(0.009) > horTh(0.004) ≈ tsize(0.003) ≈ tgrade(0.003) > menostat(0.0001)",
+      "pnodes / progrec 在 VIMP 与 Cox 显著性中均领先：两种方法信号互相印证",
+      "age：VIMP 第 3 但 Cox 不显著（p=0.309）→ 提示 Cox 线性假设可能遗漏非线性年龄效应，为后续探索点",
+      "horTh：Cox 显著（p=0.007）但 VIMP 低（0.004）→ 显著性≠预测重要性，两类指标回答不同问题"
+    ]
+  }
+}

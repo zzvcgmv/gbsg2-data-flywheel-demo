@@ -1,0 +1,14 @@
+{
+  "question_id": "q02",
+  "question": "哪些是 RFS 的独立预后因素？estrec 单变量显著，为何调整后消失？",
+  "analysis_target": "cox",
+  "golden_answer": {
+    "method": "单变量→多变量 Cox 对照 + Spearman 相关检验",
+    "key_points": [
+      "独立预后因素（多变量 p<0.05）：horTh(0.007) / tsize(0.048) / pnodes(<0.001) / progrec(<0.001) / tgrade.L(0.004)",
+      "非独立：age(0.309) / estrec(0.661) / menostat(0.159) / tgrade.Q(0.099)",
+      "estrec 单变量 p=0.041 → 多变量 p=0.661：与 progrec 信息重叠（Spearman ρ=0.60），信号被分走",
+      "混杂幅度：horTh 单变量 0.695 → 调整后 0.707，方向与显著性不变，混杂轻微"
+    ]
+  }
+}

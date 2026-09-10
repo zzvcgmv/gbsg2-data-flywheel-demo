@@ -1,0 +1,143 @@
+[
+  {
+    "id": "k_cox",
+    "factor": "多变量 Cox PH 框架",
+    "detail": "多变量 Cox PH：主效应+协变量调整；报告 HR/95%CI/p 与整体检验（LR/Wald/Score 均显著 p<2e-16），Concordance=0.692",
+    "query_tags": [
+      "cox"
+    ],
+    "tier": "base"
+  },
+  {
+    "id": "k_km",
+    "factor": "生存曲线比较",
+    "detail": "KM 曲线+log-rank 检验比较两组生存：GBSG2 按 horTh 分组 log-rank p=0.003，治疗组全程在上",
+    "query_tags": [
+      "生存"
+    ],
+    "tier": "base"
+  },
+  {
+    "id": "k_uni",
+    "factor": "混杂评估",
+    "detail": "单变量→多变量对照评估混杂：horTh 0.695→0.707，方向与显著性不变，混杂轻微",
+    "query_tags": [
+      "cox"
+    ],
+    "tier": "base"
+  },
+  {
+    "id": "k_kph",
+    "factor": "PH 假设诊断",
+    "detail": "cox.zph 检验 PH：主暴露 horTh p=0.625 成立；GLOBAL p=0.0037 提示整体违反，结论不改变但需谨慎解读",
+    "query_tags": [
+      "ph",
+      "cox"
+    ],
+    "tier": "base"
+  },
+  {
+    "id": "k_ind",
+    "factor": "独立预后因素",
+    "detail": "GBSG2 独立预后因素：horTh/tsize/pnodes/progrec/tgrade.L；非独立：age(0.309)/menostat(0.159)/tgrade.Q(0.099)",
+    "query_tags": [
+      "cox"
+    ],
+    "tier": "base"
+  },
+  {
+    "id": "k_fac",
+    "factor": "分类变量编码的默认做法",
+    "detail": "有序分类变量默认按因子进入模型（审慎做法）；GBSG2 tgrade 保留因子形式",
+    "query_tags": [
+      "tgrade",
+      "编码"
+    ],
+    "tier": "base"
+  },
+  {
+    "id": "k_rsf",
+    "factor": "随机生存森林与 VIMP",
+    "detail": "随机生存森林：集成树方法，VIMP 衡量变量对预测的贡献；GBSG2 VIMP 排序 pnodes 0.041 > progrec 0.023 > age 0.014 > estrec 0.009 > horTh 0.004 ≈ tsize 0.003 ≈ tgrade 0.003 > menostat 0.0001；pnodes/progrec 两法一致领先；RSF C-index 0.679 vs Cox 0.692 同水平，RSF 未超越",
+    "query_tags": [
+      "rsf",
+      "vimp"
+    ],
+    "tier": "base"
+  },
+  {
+    "id": "k_robust",
+    "name": "k_robust",
+    "factor": "k_robust",
+    "definition": "稳健性检查要做三模型对照：单变量 0.695 / 主模型 0.707 / 分层 Cox（strata menostat+tgrade）0.699，三模型 HR≈0.70 且 CI 重叠，结论不依赖模型设定",
+    "detail": "稳健性检查要做三模型对照：单变量 0.695 / 主模型 0.707 / 分层 Cox（strata menostat+tgrade）0.699，三模型 HR≈0.70 且 CI 重叠，结论不依赖模型设定",
+    "lesson": "稳健性检查要做三模型对照：单变量 0.695 / 主模型 0.707 / 分层 Cox（strata menostat+tgrade）0.699，三模型 HR≈0.70 且 CI 重叠，结论不依赖模型设定",
+    "query_tags": [
+      "cox",
+      "稳健"
+    ],
+    "tier": "learned",
+    "source_feedback": "fb_s04",
+    "note": "由反馈 fb_s04（业务方）沉淀"
+  },
+  {
+    "id": "k_ph_strata",
+    "name": "k_ph_strata",
+    "factor": "k_ph_strata",
+    "definition": "PH 违反处理：对违反变量分层 strata() 重估主效应做敏感性分析，分层后 horTh HR=0.699（0.542–0.901）；违反集中在 age/estrec/progrec/menostat/tgrade；分层模型与主模型结构不同，Concordance 不可直接比较",
+    "detail": "PH 违反处理：对违反变量分层 strata() 重估主效应做敏感性分析，分层后 horTh HR=0.699（0.542–0.901）；违反集中在 age/estrec/progrec/menostat/tgrade；分层模型与主模型结构不同，Concordance 不可直接比较",
+    "lesson": "PH 违反处理：对违反变量分层 strata() 重估主效应做敏感性分析，分层后 horTh HR=0.699（0.542–0.901）；违反集中在 age/estrec/progrec/menostat/tgrade；分层模型与主模型结构不同，Concordance 不可直接比较",
+    "query_tags": [
+      "ph",
+      "分层"
+    ],
+    "tier": "learned",
+    "source_feedback": "fb_s06",
+    "note": "由反馈 fb_s06（统计评审）沉淀"
+  },
+  {
+    "id": "k_sig_vimp",
+    "name": "k_sig_vimp",
+    "factor": "k_sig_vimp",
+    "definition": "显著性≠预测重要性：horTh 在 Cox 中显著（p=0.007）但 VIMP 仅 0.004；age 在 RSF 中 VIMP 第 3 但 Cox 不显著（p=0.309），提示潜在非线性年龄效应，两类指标回答不同问题",
+    "detail": "显著性≠预测重要性：horTh 在 Cox 中显著（p=0.007）但 VIMP 仅 0.004；age 在 RSF 中 VIMP 第 3 但 Cox 不显著（p=0.309），提示潜在非线性年龄效应，两类指标回答不同问题",
+    "lesson": "显著性≠预测重要性：horTh 在 Cox 中显著（p=0.007）但 VIMP 仅 0.004；age 在 RSF 中 VIMP 第 3 但 Cox 不显著（p=0.309），提示潜在非线性年龄效应，两类指标回答不同问题",
+    "query_tags": [
+      "rsf",
+      "vimp"
+    ],
+    "tier": "learned",
+    "source_feedback": "fb_s07",
+    "note": "由反馈 fb_s07（业务方）沉淀"
+  },
+  {
+    "id": "k_tgrade",
+    "name": "k_tgrade",
+    "factor": "k_tgrade",
+    "definition": "tgrade 三水平因子与二次多项式张成同一模型空间（AIC 3489.464 必然相同）；线性编码 AIC=3490.349（ΔAIC≈0.89）、LRT p=0.089，非线性证据不足；调整后 tgrade.Q p=0.099 边际不显著",
+    "detail": "tgrade 三水平因子与二次多项式张成同一模型空间（AIC 3489.464 必然相同）；线性编码 AIC=3490.349（ΔAIC≈0.89）、LRT p=0.089，非线性证据不足；调整后 tgrade.Q p=0.099 边际不显著",
+    "lesson": "tgrade 三水平因子与二次多项式张成同一模型空间（AIC 3489.464 必然相同）；线性编码 AIC=3490.349（ΔAIC≈0.89）、LRT p=0.089，非线性证据不足；调整后 tgrade.Q p=0.099 边际不显著",
+    "query_tags": [
+      "tgrade",
+      "编码"
+    ],
+    "tier": "learned",
+    "source_feedback": "fb_s05",
+    "note": "由反馈 fb_s05（统计评审）沉淀"
+  },
+  {
+    "id": "k_limit",
+    "name": "k_limit",
+    "factor": "k_limit",
+    "definition": "AI 回答必须主动声明数据局限：GBSG2 为 686 例历史试验数据（299 事件），结论外推需谨慎",
+    "detail": "AI 回答必须主动声明数据局限：GBSG2 为 686 例历史试验数据（299 事件），结论外推需谨慎",
+    "lesson": "AI 回答必须主动声明数据局限：GBSG2 为 686 例历史试验数据（299 事件），结论外推需谨慎",
+    "query_tags": [
+      "cox",
+      "生存"
+    ],
+    "tier": "learned",
+    "source_feedback": "fb_s10",
+    "note": "由反馈 fb_s10（统计评审）沉淀"
+  }
+]

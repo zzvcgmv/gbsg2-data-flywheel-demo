@@ -9,3 +9,7 @@ __pycache__/
 # API Key 安全：环境变量与密钥文件一律不提交
 .env
 *.key
+
+# IDE
+.idea/
+*.iml

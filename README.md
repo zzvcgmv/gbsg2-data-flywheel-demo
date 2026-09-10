@@ -2,7 +2,7 @@
 
 > **一句话定位**：用公开生物统计数据集 GBSG2 演示"数据回流与反馈机制 / 分析经验·指标口径·业务知识资产化 / 越用越准的数据飞轮"——把 JD 里那句抽象描述，变成可复现、可量化、有真实 LLM 接入的运行系统。
 
-![Accuracy](https://img.shields.io/badge/Accuracy-100%25-52C41A) ![Hallucination](https://img.shields.io/badge/Hallucination-0-52C41A) ![R](https://img.shields.io/badge/R-4.2-276DC3) ![Python](https://img.shields.io/badge/Python-3.11-3776AB) ![LLM](https://img.shields.io/badge/LLM-GLM--4--Flash-1A6B8F)
+![Checkpoints](https://img.shields.io/badge/Checkpoints-27/27-52C41A) ![ForbiddenHit](https://img.shields.io/badge/Forbidden%20Hit-0-52C41A) ![R](https://img.shields.io/badge/R-4.2-276DC3) ![Python](https://img.shields.io/badge/Python-3.11-3776AB) ![LLM](https://img.shields.io/badge/LLM-GLM--4--Flash-1A6B8F)
 
 **数据集**：GBSG2（德国乳腺癌研究组，686 例，299 复发事件，`TH.data::GBSG2`）
 **角色代入**：模拟"AI 数据分析产品"的完整链路——R 侧产出分析金标准，Python 侧搭建评估 + 反馈 + 资产化闭环，真实大模型（GLM-4-Flash）作为被评估的 AI 分析师。
@@ -11,7 +11,7 @@
 
 ## 一、核心结果
 
-| 链路 | 版本 | 准确率 | 检查点 | 幻觉 |
+| 链路 | 版本 | 检查点通过率 | 检查点 | 幻觉扫描命中 |
 |---|---|---|---|---|
 | 确定性引擎（机制证明） | v1 base 资产 | 48.1% | 13/27 | — |
 | 确定性引擎（机制证明） | v2 +10 条反馈沉淀 | **100%** | 27/27 | 0 |
@@ -52,9 +52,9 @@ python run_demo.py        # v1 48.1% → 反馈沉淀 → v2 100%，生成 repor
 ### 3. 真实 LLM 飞轮（需 API key）
 ```bash
 export LLM_API_KEY=<智谱开放平台 key>   # 免费模型 glm-4-flash
-python run_demo_llm.py zhipu --rounds 1   # 首轮 77.8% → 补漏 100%，幻觉 0
+python run_demo_llm.py zhipu --rounds 1   # 首轮 77.8% → 补漏 27/27，forbidden 命中 0
 ```
-支持 provider：`zhipu` / `deepseek` / `doubao` / `openai`（`llm_engine.py` 内配置）。
+支持 provider：`zhipu` / `deepseek` / `doubao` / `openai`（`llm_engine.py` 内配置）。**仅 zhipu/GLM-4-Flash 有运行记录，其余为兼容配置，未实测。**
 
 ---
 
@@ -65,7 +65,7 @@ python run_demo_llm.py zhipu --rounds 1   # 首轮 77.8% → 补漏 100%，幻�
 > 1. **金标准资产化**：把分析结论（HR=0.707、CI、口径、PH 检验）结构化存成 JSON——分析经验沉淀；
 > 2. **评估体系**：27 个检查点按关键字匹配 + 幻觉扫描（forbidden 数值表）衡量"准不准"；
 > 3. **反馈闭环**：10 条带溯源的纠错（真实踩坑：列名、OOB 口径、共线性、PH 分层）沉淀为资产，引擎从 48.1% 涨到 100%；
-> 4. **真实模型验证**：GLM-4-Flash 接入后暴露真问题——编造 CI、漏点——用 few-shot + 评估驱动补漏把 77.8% 拉到 100%，幻觉归零。
+> 4. **真实模型验证**：GLM-4-Flash 接入后暴露真问题——编造 CI、漏点——用 few-shot + 评估驱动补漏把 77.8% 拉到 27/27，forbidden 幻觉扫描命中归零。
 
 **Q：怎么判断 AI 能承担到什么程度？（机会识别与边界管理）**
 > demo 里 q01–q05 的边界就是证据：Cox 数值结论（HR/CI）LLM 需要 few-shot 才能说准；方法学诊断（PH 违反的解读、显著≠预测重要）需要评估补漏才补齐；数据局限声明是资产层强制的。**能承担的程度 = 金标准覆盖的检查点能通过多少**，这正是评估体系的价值——边界不是拍脑袋，是测出来的。
@@ -78,7 +78,7 @@ python run_demo_llm.py zhipu --rounds 1   # 首轮 77.8% → 补漏 100%，幻�
 
 ---
 
-## 五、诚实的边界（面试加分细节）
+## 五、边界
 
 - **反馈是离线注入的**（来自真实踩坑经验，通过 `feedback.py` 幂等沉淀），不是运行时自动产生；demo 证明的是"反馈一旦进来系统能承接、沉淀、变准"。真实产品中反馈源 = 用户纠错 / 专家评审 / 线上评估日志。
 - **评估器是关键字匹配**，不是语义理解——所以才有 or_keywords 同义词迭代；真实产品会用 LLM-as-judge。

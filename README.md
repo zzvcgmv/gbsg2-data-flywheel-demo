@@ -2,6 +2,8 @@
 
 > **一句话定位**：用公开生物统计数据集 GBSG2 演示"数据回流与反馈机制 / 分析经验·指标口径·业务知识资产化 / 越用越准的数据飞轮"——把 JD 里那句抽象描述，变成可复现、可量化、有真实 LLM 接入的运行系统。
 
+![Accuracy](https://img.shields.io/badge/Accuracy-100%25-52C41A) ![Hallucination](https://img.shields.io/badge/Hallucination-0-52C41A) ![R](https://img.shields.io/badge/R-4.2-276DC3) ![Python](https://img.shields.io/badge/Python-3.11-3776AB) ![LLM](https://img.shields.io/badge/LLM-GLM--4--Flash-1A6B8F)
+
 **数据集**：GBSG2（德国乳腺癌研究组，686 例，299 复发事件，`TH.data::GBSG2`）
 **角色代入**：模拟"AI 数据分析产品"的完整链路——R 侧产出分析金标准，Python 侧搭建评估 + 反馈 + 资产化闭环，真实大模型（GLM-4-Flash）作为被评估的 AI 分析师。
 
@@ -18,34 +20,13 @@
 
 **一句话结论**：反馈一旦进入系统，系统就能承接、沉淀、变准——飞轮转起来了。
 
+![结果总览](docs/overview.svg)
+
 ---
 
 ## 二、系统架构
 
-```
-┌───────────────────────── R 侧（金标准生产）─────────────────────────┐
-│  GBSG2-RQ.R  真实运行生存分析（survival / ranger / cox.zph）        │
-│  Q1 Cox 主模型 → Q2 混杂/共线 → Q3 编码形式 → Q4 PH 分层 → Q5 RSF 对比 │
-│  golden_standard/*.json   5 题 27 检查点（HR/CI/p/口径/结论）         │
-└──────────────────────────────┬──────────────────────────────────────┘
-                               │ JSON schema（question_id / question /
-                               │ golden_answer.key_points）
-┌──────────────────────────────▼──────────── Python 侧（飞轮）─────────┐
-│  gen_eval_set.py  自动生成评估集（零手工搬运，含幻觉扫描 forbidden 表） │
-│                                                                      │
-│  ┌───────── 评估器（evaluator.py）──────────┐                        │
-│  │ keywords(AND) + or_keywords(OR) + forbidden │                     │
-│  │ 命中率 / 幻觉扫描 / 稳定性(3 轮方差)         │                     │
-│  └──────┬──────────────────────▲────────────┘                        │
-│         │ 回答                    │ 未命中要点（反馈）                  │
-│  ┌──────▼──────────┐   ┌─────────┴───────────┐                       │
-│  │ 被评估对象        │   │ 资产层（assets/*.json）│                     │
-│  │ · biostat_engine │──▶│ metrics 口径字典      │  ◀─ feedback.py 沉淀 │
-│  │ · llm_engine    │   │ knowledge 统计方法知识 │     10 条反馈带溯源   │
-│  │ （GLM-4-Flash）  │   │ fewshot 纠错案例      │                      │
-│  └──────────────────┘   └─────────────────────┘                       │
-└──────────────────────────────────────────────────────────────────────┘
-```
+![系统架构](docs/architecture.svg)
 
 **语言选择即产品接口思维**：R 负责"把统计做对"（金标准），Python 负责"把 LLM 生态接进来"（飞轮），中间只靠标准 JSON 解耦——任何一侧换实现都不影响另一侧。
 

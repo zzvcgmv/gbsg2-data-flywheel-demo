@@ -1,0 +1,97 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="940" height="600" viewBox="0 0 940 600">
+  <defs>
+    <marker id="arrB" markerWidth="9" markerHeight="9" refX="8" refY="3.5" orient="auto">
+      <path d="M0,0 L8,3.5 L0,7 Z" fill="#6B7280"/>
+    </marker>
+  </defs>
+  <rect width="940" height="600" rx="16" fill="#FFFFFF"/>
+  <text x="470" y="34" font-family="'PingFang SC','Microsoft YaHei',Arial,sans-serif" font-size="17" font-weight="700" fill="#1A1B1C" text-anchor="middle">系统架构：R 侧金标准生产 → JSON 接口 → Python 侧数据飞轮</text>
+
+  <!-- R 侧大框 -->
+  <rect x="20" y="56" width="350" height="420" rx="14" fill="#F7FAFC" stroke="#A3D5E8" stroke-width="1.5"/>
+  <text x="195" y="84" font-family="'PingFang SC','Microsoft YaHei',Arial,sans-serif" font-size="14" font-weight="700" fill="#1A6B8F" text-anchor="middle">R 侧 · 金标准生产（真实运行）</text>
+
+  <rect x="45" y="104" width="300" height="76" rx="10" fill="#FFFFFF" stroke="#A3D5E8"/>
+  <text x="195" y="132" font-family="'PingFang SC','Microsoft YaHei',Arial,sans-serif" font-size="13" font-weight="700" fill="#1A1B1C" text-anchor="middle">GBSG2-RQ.R</text>
+  <text x="195" y="152" font-family="'PingFang SC','Microsoft YaHei',Arial,sans-serif" font-size="11" fill="#6B7280" text-anchor="middle">survival / cox.zph / ranger</text>
+  <text x="195" y="168" font-family="'PingFang SC','Microsoft YaHei',Arial,sans-serif" font-size="11" fill="#6B7280" text-anchor="middle">seed=42 可复现</text>
+
+  <line x1="195" y1="180" x2="195" y2="208" stroke="#6B7280" stroke-width="1.5" marker-end="url(#arrB)"/>
+
+  <rect x="45" y="212" width="300" height="100" rx="10" fill="#FFFFFF" stroke="#52C41A" stroke-width="1.5"/>
+  <text x="195" y="238" font-family="'PingFang SC','Microsoft YaHei',Arial,sans-serif" font-size="13" font-weight="700" fill="#2F7D16" text-anchor="middle">golden_standard/*.json</text>
+  <text x="195" y="258" font-family="'PingFang SC','Microsoft YaHei',Arial,sans-serif" font-size="11" fill="#1A1B1C" text-anchor="middle">5 题 · 27 检查点</text>
+  <text x="195" y="276" font-family="'PingFang SC','Microsoft YaHei',Arial,sans-serif" font-size="11" fill="#6B7280" text-anchor="middle">HR / 95%CI / p / 口径 / 结论</text>
+  <text x="195" y="294" font-family="'PingFang SC','Microsoft YaHei',Arial,sans-serif" font-size="11" fill="#6B7280" text-anchor="middle">分析经验 · 指标口径资产化</text>
+
+  <rect x="45" y="340" width="300" height="116" rx="10" fill="#F0F4F8"/>
+  <text x="195" y="362" font-family="'PingFang SC','Microsoft YaHei',Arial,sans-serif" font-size="11.5" font-weight="600" fill="#1A1B1C" text-anchor="middle">研究问题（金标准由实操定稿）</text>
+  <text x="195" y="384" font-family="'PingFang SC','Microsoft YaHei',Arial,sans-serif" font-size="10.5" fill="#6B7280" text-anchor="middle">Q1 Cox 主模型（horTh HR/CI）</text>
+  <text x="195" y="400" font-family="'PingFang SC','Microsoft YaHei',Arial,sans-serif" font-size="10.5" fill="#6B7280" text-anchor="middle">Q2 混杂与共线性 · Q3 编码形式</text>
+  <text x="195" y="416" font-family="'PingFang SC','Microsoft YaHei',Arial,sans-serif" font-size="10.5" fill="#6B7280" text-anchor="middle">Q4 PH 假设与分层 · Q5 RSF 对比</text>
+  <text x="195" y="438" font-family="'PingFang SC','Microsoft YaHei',Arial,sans-serif" font-size="10.5" fill="#9AA0A6" text-anchor="middle">Q6 贝叶斯后验（扩展方向）</text>
+
+  <!-- JSON 接口箭头 -->
+  <line x1="345" y1="262" x2="430" y2="262" stroke="#1A6B8F" stroke-width="2.4" marker-end="url(#arrB)"/>
+  <rect x="352" y="272" width="78" height="34" rx="8" fill="#EAF3F9"/>
+  <text x="391" y="285" font-family="'PingFang SC','Microsoft YaHei',Arial,sans-serif" font-size="10" font-weight="600" fill="#1A6B8F" text-anchor="middle">JSON</text>
+  <text x="391" y="300" font-family="'PingFang SC','Microsoft YaHei',Arial,sans-serif" font-size="9" fill="#1A6B8F" text-anchor="middle">schema 接口</text>
+
+  <!-- Python 侧大框 -->
+  <rect x="430" y="56" width="490" height="420" rx="14" fill="#FCFAF5" stroke="#E1B98F" stroke-width="1.5"/>
+  <text x="675" y="84" font-family="'PingFang SC','Microsoft YaHei',Arial,sans-serif" font-size="14" font-weight="700" fill="#9A5B2E" text-anchor="middle">Python 侧 · 数据飞轮（评估 → 反馈 → 资产化）</text>
+
+  <!-- A gen_eval_set -->
+  <rect x="450" y="104" width="200" height="64" rx="10" fill="#FFFFFF" stroke="#A3D5E8"/>
+  <text x="550" y="128" font-family="'PingFang SC','Microsoft YaHei',Arial,sans-serif" font-size="12.5" font-weight="700" fill="#1A6B8F" text-anchor="middle">gen_eval_set.py</text>
+  <text x="550" y="147" font-family="'PingFang SC','Microsoft YaHei',Arial,sans-serif" font-size="10.5" fill="#6B7280" text-anchor="middle">自动生成评估集 · 零手工搬运</text>
+  <text x="550" y="161" font-family="'PingFang SC','Microsoft YaHei',Arial,sans-serif" font-size="10.5" fill="#6B7280" text-anchor="middle">含 forbidden 幻觉数值表</text>
+
+  <!-- B 评估器 -->
+  <rect x="700" y="104" width="200" height="64" rx="10" fill="#FFFFFF" stroke="#9EACEA" stroke-width="1.5"/>
+  <text x="800" y="128" font-family="'PingFang SC','Microsoft YaHei',Arial,sans-serif" font-size="12.5" font-weight="700" fill="#4A56B8" text-anchor="middle">评估器 evaluator.py</text>
+  <text x="800" y="147" font-family="'PingFang SC','Microsoft YaHei',Arial,sans-serif" font-size="10.5" fill="#6B7280" text-anchor="middle">keywords(AND) / or_keywords(OR)</text>
+  <text x="800" y="161" font-family="'PingFang SC','Microsoft YaHei',Arial,sans-serif" font-size="10.5" fill="#6B7280" text-anchor="middle">幻觉扫描 · 稳定性(3轮方差)</text>
+
+  <line x1="650" y1="136" x2="698" y2="136" stroke="#6B7280" stroke-width="1.6" marker-end="url(#arrB)"/>
+  <text x="674" y="128" font-family="'PingFang SC','Microsoft YaHei',Arial,sans-serif" font-size="9.5" fill="#6B7280" text-anchor="middle">评估集</text>
+
+  <!-- C 被评估对象 -->
+  <rect x="450" y="212" width="200" height="76" rx="10" fill="#FFFFFF" stroke="#E1B98F" stroke-width="1.5"/>
+  <text x="550" y="236" font-family="'PingFang SC','Microsoft YaHei',Arial,sans-serif" font-size="12.5" font-weight="700" fill="#9A5B2E" text-anchor="middle">被评估对象</text>
+  <text x="550" y="256" font-family="'PingFang SC','Microsoft YaHei',Arial,sans-serif" font-size="10.5" fill="#1A1B1C" text-anchor="middle">确定性引擎 biostat_engine.py</text>
+  <text x="550" y="272" font-family="'PingFang SC','Microsoft YaHei',Arial,sans-serif" font-size="10.5" fill="#6B7280" text-anchor="middle">真实 LLM llm_engine.py（GLM-4-Flash）</text>
+
+  <!-- D 资产层 -->
+  <rect x="700" y="212" width="200" height="76" rx="10" fill="#FFFFFF" stroke="#52C41A" stroke-width="1.5"/>
+  <text x="800" y="236" font-family="'PingFang SC','Microsoft YaHei',Arial,sans-serif" font-size="12.5" font-weight="700" fill="#2F7D16" text-anchor="middle">资产层 assets/*.json</text>
+  <text x="800" y="256" font-family="'PingFang SC','Microsoft YaHei',Arial,sans-serif" font-size="10.5" fill="#1A1B1C" text-anchor="middle">metrics 口径字典 · knowledge 方法</text>
+  <text x="800" y="272" font-family="'PingFang SC','Microsoft YaHei',Arial,sans-serif" font-size="10.5" fill="#6B7280" text-anchor="middle">fewshot 纠错案例</text>
+
+  <!-- C→B 回答 -->
+  <line x1="650" y1="250" x2="698" y2="160" stroke="#9A5B2E" stroke-width="1.8" marker-end="url(#arrB)"/>
+  <text x="678" y="212" font-family="'PingFang SC','Microsoft YaHei',Arial,sans-serif" font-size="10" font-weight="600" fill="#9A5B2E" text-anchor="middle">回答</text>
+  <!-- B→C 反馈 -->
+  <line x1="700" y1="150" x2="652" y2="240" stroke="#B03A48" stroke-width="1.8" stroke-dasharray="5,3" marker-end="url(#arrB)"/>
+  <text x="672" y="188" font-family="'PingFang SC','Microsoft YaHei',Arial,sans-serif" font-size="10" font-weight="600" fill="#B03A48" text-anchor="middle">未命中要点回灌</text>
+
+  <!-- feedback.py -->
+  <rect x="450" y="332" width="200" height="64" rx="10" fill="#FFFFFF" stroke="#52C41A"/>
+  <text x="550" y="356" font-family="'PingFang SC','Microsoft YaHei',Arial,sans-serif" font-size="12.5" font-weight="700" fill="#2F7D16" text-anchor="middle">feedback.py 反馈沉淀</text>
+  <text x="550" y="375" font-family="'PingFang SC','Microsoft YaHei',Arial,sans-serif" font-size="10.5" fill="#6B7280" text-anchor="middle">10 条纠错 · tier=learned</text>
+  <text x="550" y="389" font-family="'PingFang SC','Microsoft YaHei',Arial,sans-serif" font-size="10.5" fill="#6B7280" text-anchor="middle">幂等写入 · 带来源溯源</text>
+
+  <!-- feedback→D -->
+  <line x1="650" y1="360" x2="698" y2="290" stroke="#52C41A" stroke-width="1.8" marker-end="url(#arrB)"/>
+  <text x="676" y="330" font-family="'PingFang SC','Microsoft YaHei',Arial,sans-serif" font-size="10" font-weight="600" fill="#2F7D16" text-anchor="middle">沉淀</text>
+
+  <!-- D→C 资产供给 -->
+  <line x1="700" y1="240" x2="652" y2="240" stroke="#52C41A" stroke-width="1.6" stroke-dasharray="5,3" marker-end="url(#arrB)"/>
+  <text x="676" y="232" font-family="'PingFang SC','Microsoft YaHei',Arial,sans-serif" font-size="10" font-weight="600" fill="#2F7D16" text-anchor="middle">资产供给</text>
+
+  <!-- 底部说明 -->
+  <rect x="20" y="492" width="900" height="88" rx="12" fill="#F4F9F4"/>
+  <text x="40" y="516" font-family="'PingFang SC','Microsoft YaHei',Arial,sans-serif" font-size="12.5" font-weight="700" fill="#2F7D16">闭环：反馈一旦进入系统 → 资产化沉淀 → 回答变准 → 越用越准的数据飞轮</text>
+  <text x="40" y="540" font-family="'PingFang SC','Microsoft YaHei',Arial,sans-serif" font-size="11.5" fill="#1A1B1C">• 语言选择即产品接口思维：R 把统计做对（金标准），Python 接 LLM 生态（飞轮），JSON 解耦</text>
+  <text x="40" y="560" font-family="'PingFang SC','Microsoft YaHei',Arial,sans-serif" font-size="11.5" fill="#6B7280">• 诚实边界：demo 中反馈为离线注入（真实踩坑），真实产品反馈源 = 用户纠错 / 专家评审 / 线上评估日志</text>
+</svg>

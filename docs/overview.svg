@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="820" height="430" viewBox="0 0 820 430">
+  <defs>
+    <marker id="arr" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto">
+      <path d="M0,0 L7,3 L0,6 Z" fill="#6B7280"/>
+    </marker>
+  </defs>
+  <rect width="820" height="430" rx="16" fill="#FFFFFF"/>
+  <text x="28" y="40" font-family="'PingFang SC','Microsoft YaHei',Arial,sans-serif" font-size="20" font-weight="700" fill="#1A1B1C">AI 生物统计分析师 · 数据飞轮结果总览</text>
+  <text x="28" y="64" font-family="'PingFang SC','Microsoft YaHei',Arial,sans-serif" font-size="12.5" fill="#6B7280">GBSG2（686 例 / 299 事件）· 金标准 5 题 27 检查点 · 全部数字真实运行产出</text>
+
+  <!-- bar 背景 -->
+  <g font-family="'PingFang SC','Microsoft YaHei',Arial,sans-serif">
+    <rect x="210" y="96" width="500" height="24" rx="12" fill="#F0EFEA"/>
+    <rect x="210" y="152" width="500" height="24" rx="12" fill="#F0EFEA"/>
+    <rect x="210" y="208" width="500" height="24" rx="12" fill="#F0EFEA"/>
+    <rect x="210" y="264" width="500" height="24" rx="12" fill="#F0EFEA"/>
+  </g>
+
+  <!-- 行1: 确定性 v1 -->
+  <text x="28" y="112" font-family="'PingFang SC','Microsoft YaHei',Arial,sans-serif" font-size="13" font-weight="600" fill="#1A1B1C">确定性引擎 v1</text>
+  <text x="28" y="128" font-family="'PingFang SC','Microsoft YaHei',Arial,sans-serif" font-size="11" fill="#6B7280">base 资产 · 只有初始统计知识</text>
+  <rect x="210" y="96" width="240" height="24" rx="12" fill="#A3D5E8"/>
+  <text x="726" y="113" font-family="'PingFang SC','Microsoft YaHei',Arial,sans-serif" font-size="14" font-weight="700" fill="#1A6B8F">48.1% · 13/27</text>
+
+  <!-- 行2: 确定性 v2 -->
+  <text x="28" y="168" font-family="'PingFang SC','Microsoft YaHei',Arial,sans-serif" font-size="13" font-weight="600" fill="#1A1B1C">确定性引擎 v2</text>
+  <text x="28" y="184" font-family="'PingFang SC','Microsoft YaHei',Arial,sans-serif" font-size="11" fill="#6B7280">+ 10 条反馈沉淀（带溯源）</text>
+  <rect x="210" y="152" width="500" height="24" rx="12" fill="#52C41A"/>
+  <text x="726" y="169" font-family="'PingFang SC','Microsoft YaHei',Arial,sans-serif" font-size="14" font-weight="700" fill="#2F7D16">100% · 27/27</text>
+
+  <!-- 行3: LLM 首轮 -->
+  <text x="28" y="224" font-family="'PingFang SC','Microsoft YaHei',Arial,sans-serif" font-size="13" font-weight="600" fill="#1A1B1C">真实 LLM 首轮</text>
+  <text x="28" y="240" font-family="'PingFang SC','Microsoft YaHei',Arial,sans-serif" font-size="11" fill="#6B7280">GLM-4-Flash · 结构化 prompt + few-shot</text>
+  <rect x="210" y="208" width="389" height="24" rx="12" fill="#E1B98F"/>
+  <text x="726" y="225" font-family="'PingFang SC','Microsoft YaHei',Arial,sans-serif" font-size="14" font-weight="700" fill="#9A5B2E">77.8% · 21/27</text>
+
+  <!-- 行4: LLM 补漏 -->
+  <text x="28" y="280" font-family="'PingFang SC','Microsoft YaHei',Arial,sans-serif" font-size="13" font-weight="600" fill="#1A1B1C">真实 LLM 补漏后</text>
+  <text x="28" y="296" font-family="'PingFang SC','Microsoft YaHei',Arial,sans-serif" font-size="11" fill="#6B7280">评估驱动补漏 · 未命中要点回灌自纠正</text>
+  <rect x="210" y="264" width="500" height="24" rx="12" fill="#52C41A"/>
+  <text x="726" y="281" font-family="'PingFang SC','Microsoft YaHei',Arial,sans-serif" font-size="14" font-weight="700" fill="#2F7D16">100% · 27/27</text>
+
+  <!-- 上升箭头 -->
+  <line x1="730" y1="132" x2="730" y2="150" stroke="#6B7280" stroke-width="1.6" marker-end="url(#arr)"/>
+  <line x1="730" y1="240" x2="730" y2="262" stroke="#6B7280" stroke-width="1.6" marker-end="url(#arr)"/>
+
+  <!-- 幻觉与稳定性 -->
+  <rect x="28" y="340" width="764" height="66" rx="12" fill="#F4F9F4"/>
+  <text x="48" y="366" font-family="'PingFang SC','Microsoft YaHei',Arial,sans-serif" font-size="13" font-weight="700" fill="#2F7D16">幻觉扫描：0 处数值冲突（q01 曾编造 CI 0.642–0.774 → few-shot 后归零）</text>
+  <text x="48" y="390" font-family="'PingFang SC','Microsoft YaHei',Arial,sans-serif" font-size="13" fill="#1A1B1C">稳定性：确定性引擎 3 轮方差 0.0pp · 补漏重试共找回 6 个检查点（q02×2 / q03×1 / q05×3）</text>
+</svg>
